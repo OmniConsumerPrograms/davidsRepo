@@ -1,0 +1,13 @@
+B1
+9 11
+xx#####xx
+x#.....#x
+#.......#
+#.......#
+x#.....#x
+xx#...#xx
+xxx#~#xxx
+xxx#.#xxx
+xxx#.#xxx
+xxx#.#xxx
+xxx###xxx

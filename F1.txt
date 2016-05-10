@@ -1,0 +1,23 @@
+F1
+21 21
+xx###xxxxxxxxxxxxxxxx
+xx#.#xxxxxx######xxxx
+xx#.#xxxxxx#....#xxxx
+xx#.#xxxxxx#....#xxxx
+xx#~#########~###xxxx
+xx#......~..#..#xxxxx
+xx####~#.#.###~#xxxxx
+######.#.#.....#xxxxx
+#....#.#.#.#########x
+#....~.#.....~.....#x
+#~############.....#x
+#.~.....######.....#x
+#.#.....#....~.....#x
+#~#######~##########x
+#.......~.#xxxxxxxxxx
+#.......#~####xxxxxxx
+#########....#xxxxxxx
+#....~..~....#xxxxxxx
+#....####....#xxxxxxx
+#....#xx######xxxxxxx
+######xxxxxxxxxxxxxxx
