@@ -1,4 +1,3 @@
-//David Hinchman
 //Omni Consumer Programs
 //Character Parent Class
 
@@ -7,25 +6,33 @@ abstract class Character
    private String _name;
    private int _hp;
    private int _maxHp;
-   private double _baseHitAmount;
+   private int _defense;
+   private int _hitMin;
+   private int _hitMax;
    private double _hitPercent;
    private double _critPercent;
    private int _attackSpd;
-   
+   protected AttackList _attackList;
+
+         
    //EVC
-   protected Character(String name, int maxHp, double baseHitAmount,
+   protected Character(String name, int maxHp, int hitMin, int hitMax, int defense,
                         double hitPercent, double critPercent, int attackSpd)
    {
       _name = name;
       _hp = maxHp;
       _maxHp = maxHp;
-      _baseHitAmount = baseHitAmount;
+      _defense = defense;
+      _hitMin = hitMin;
+      _hitMax = hitMax;
       _hitPercent = hitPercent;
       _critPercent = critPercent;
-      _attackSpd = attackSpd; 
+      _attackSpd = attackSpd;   
+      
+      _attackList = new AttackList();
+    
    }//end EVC
    
-   //check to make sure our hero is aline
    public boolean isLiving()
    {
       if( _hp > 0 )
@@ -33,13 +40,11 @@ abstract class Character
       return false;
    }//end isLiving
    
-   //set the hero's name
    public void setName(String name)
    {
       _name = name;
    }//end setName
    
-   //get the hero's name
    public String getName()
    {
       return _name;
@@ -62,15 +67,35 @@ abstract class Character
       return _hp;
    }//end getHp
    
-   public void setBaseHitAmount( double baseHitAmount)
+   public void setDefense(int defense)
    {
-      _baseHitAmount = baseHitAmount;
+      _defense = defense;
+   }//end setDefense
+   
+   public int getDefense()
+   {
+      return _defense;
+   }//end getDefense
+   
+   public void setHitMin(int hitMin)
+   {
+      _hitMin = hitMin;
    }//end setBaseHitAmount
    
-   public double getBaseHitAmount()
+   public int getHitMin()
    {
-      return _baseHitAmount;
+      return _hitMin;
    }//end getBaseHitAmount
+   
+   public void setHitMax(int hitMax)
+   {
+      _hitMax = hitMax;
+   }//end setHitMax
+   
+   public int getHitMax()
+   {
+      return _hitMax;
+   }//end getHitMax
    
    //set the hit percentage of our hero
    public void setHitPercent(double hitPercent)
@@ -107,11 +132,35 @@ abstract class Character
    }//end getAttackSpd
    
    //toString for the hero 
-   public String heroInfo()
+   public String charInfo()
    {
-      return _name + ": " + this.getHp() + " hit points";
-      
+      return this.getName() + ": " + this.getHp() + "hp";
    }//end heroInfo
+   
+   public final void attack(Character incomingCharacter, int choiceInput) 
+   {
+      IAttack attack = _attackList.getAttack(choiceInput);
+      
+      attack.toAttack(this, incomingCharacter);
+   
+   }//close attack 
+   
+   public void printAttacks() 
+   {
+      for(int i = 0; i < _attackList.size(); i++) 
+      {
+         System.out.println((i+1) + ". " + _attackList.getAttack(i).getAttackName());
+      }
+   }
+
+   public boolean validAttackChoice(int x) 
+   {
+      if (x >= 0 && x < _attackList.size()) {
+         return true;
+      }
+      
+      return false;
+   }
    
    
 }

@@ -5,7 +5,7 @@ abstract class Villain extends Character
 {
    private int _xp;
    
-   public Villain(String name, int maxHp, double hitMin, double hitMax, int defense, 
+   public Villain(String name, int maxHp, int hitMin, int hitMax, int defense, 
                   double hitPercent, double critPercent, int attackSpd, int xp)
    {
       super(name, maxHp, hitMin, hitMax, defense, hitPercent, critPercent, attackSpd);

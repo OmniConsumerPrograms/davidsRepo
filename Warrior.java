@@ -1,4 +1,3 @@
-//David Hinchman
 //Omni Consumer Programs 
 //Warrior
 
@@ -6,23 +5,31 @@ public class Warrior extends Hero
 {
    public Warrior(String name)
    {
-   //String name, int maxHp, double baseHitAmount,
-   //double hitPercent, double critPercent, int attackSpd
-      super( name, 500, 50, .75, .25, 15 );
+   //String name, int maxHp, double baseHitAmount, 
+   //int defense, double hitPercent, double critPercent, int attackSpd
+      super( "Warrior", 500, 45, 55, 50, .50, .50, 15 );
+
+      IAttack attack = new NormalMeleeAttack();
+      
+      _attackList.add(attack);
    }//end Warrior
    
-   public void normalAttack()
+   public void addLevelUpAttack1()
    {
-      //normal attack
-   }//end normalAttack
+      IAttack attack = new CrushingBlow();
+      
+      _attackList.add(attack);
+   }//end addCrushingBlow
    
-   public void cruchingBlow()
+   public void addLevelUpAttack2()
    {
-      //a strong attack from the warrior
-   }//end crushingBlow
+      IAttack attack = new Whirlwind();
+      _attackList.add(attack);
+   }//end addLevelUpAttack3
    
-   public void taunt()
+   public void addLevelUpAttack3()
    {
-      //get the enemies attention
-   }//end taunt
+      IAttack attack = new Execute();
+      _attackList.add(attack); 
+   }//end addLevelUpAttack3
 }//end Warrior class

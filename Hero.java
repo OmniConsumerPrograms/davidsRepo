@@ -1,4 +1,3 @@
-//David Hinchman
 //Omni Consumer Programs
 //Heroes class
 
@@ -6,17 +5,23 @@ abstract class Hero extends Character
 {
    private int _xp;
    private Level _level;
-   //we will need an inventory class, talk with Brad
-
-   protected Hero( String name, int maxHp, double baseHitAmount, double hitPercent, double critPercent, int attackSpd)
-   {
-      super(name, maxHp, baseHitAmount, hitPercent, critPercent, attackSpd);
+   protected Inventory _inventory;
    
+   protected Hero( String name, int maxHp, int hitMin, int hitMax, 
+                   int defense, double hitPercent, double critPercent, int attackSpd)
+   {
+      super(name, maxHp, hitMin, hitMax, defense, hitPercent, critPercent, attackSpd);
+
+      _inventory = new Inventory();
       _xp = 0;
-      
       _level = new Level();
       _level.setLevel( 1 );
    }//end EVC
+   
+   //All Heroes must have these methods for leveling up
+   abstract void addLevelUpAttack1();
+   abstract void addLevelUpAttack2();
+   abstract void addLevelUpAttack3();
 
    public void setXp(int xp)
    {
@@ -33,8 +38,25 @@ abstract class Hero extends Character
       _level.setLevel(level);
    }//end setLevel
    
-   public Level getLevel()
+   public int getLevel()
    {
-      return _level;
+      return _level.getLevel();
    }//end getLevel
+   
+   public Item getInvItem( int i )
+   {
+      return _inventory.getItem(i);
+   }
+   
+   public int inventorySize()
+   {
+      return _inventory.bagSize();
+   }//end inventorySize
+   
+   public String charString()
+   {
+      String s = "";
+      s = this.getName() + ", Level: " + getLevel();
+      return s;
+   }//end toString
 }//end Heroes

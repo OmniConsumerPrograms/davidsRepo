@@ -1,27 +1,39 @@
-//David Hinchman
 //Omni Consumer Programs
 //Level class
 
 public class Level
 {
    private int _level;
-   
-   public int getLevel()
-   {
-      return _level;
-   }//end getLevel
+   private int _levelCap;
    
    public void setLevel( int level )
    {
       _level = level;
    }//end setLevel
    
-   //Create a leveling up xp check
+   public int getLevel()
+   {
+      return _level;
+   }//end getLevel
    
-   //Create stat upgrades 
-      //new attacks per level
-      //increase hitPercent
-      //increase critPercent
-      //increase health
-      //
+   public void levelCheck( Hero hero )
+   {
+      int level = 0;
+   }//end levelCheck
+   
+   public void setLevelCap( int levelCap )
+   {
+      _levelCap = levelCap;
+   }//end setLevelCap
+   
+   public int getLevelCap()
+   {
+      return _levelCap;
+   }//end getLevelCap
+   
+   public void levelUp( Hero hero )
+   {
+      
+   }//end levelUp
+   
 }//end Level class
