@@ -1,36 +1,41 @@
-//Omni Consumer Programs 
-//Paladin
 
-public class Paladin extends Hero
-{
-   public Paladin(String name)
-   {
-   //String name, int maxHp, double baseHitAmount,
-   //double hitPercent, double critPercent, int attackSpd
-      super( "Paladin", 500, 45, 55, 50, .75, .25, 15 );
+public class Paladin extends Hero {
 
-      IAttack attack = new NormalMeleeAttack();
-      _attackList.add(attack);   
-   
-   }//end Paladin
-   
-      public void addLevelUpAttack1()
-   {
-      IAttack attack = new HammerOfRighteousness();
-      
-      _attackList.add(attack);
-   }//end addLevelUoAttack1
-   
-   public void addLevelUpAttack2()
-   {
-      IAttack attack = new SwordOfLight();
-      _attackList.add(attack);
-   }//end addLevelUpAttack2
-   
-   public void addLevelUpAttack3()
-   {
-      IAttack attack = new DevineStorm();
-      _attackList.add(attack); 
-   }//end addLevelUpAttack3
+	public Paladin() 
+	{
+		super("Paladin", 120, 45, 55, 45, 21, 8, 85, 1);
 
-}//end Paladin class
+		IAttack attack = new NormalMeleeAttack();
+		this.attackList.addAttack(attack);
+	}
+
+	public Paladin(String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy, int level)
+	{
+		super(name, hpMax, attackMin, attackMax, speed, phyDefense, magDefense, accuracy, level);
+	}		
+	
+	@Override
+	void level3Attack() 
+	{
+		IAttack attack = new SwordOfLight();
+		this.attackList.addAttack(attack);
+		
+	}
+
+	@Override
+	void level6Attack() 
+	{
+		IAttack attack = new HammerOfJustice();
+		this.attackList.addAttack(attack);
+		
+	}
+
+	@Override
+	void level9Attack() 
+	{
+		IAttack attack = new DevineStorm();
+		this.attackList.addAttack(attack);
+		
+	}
+
+}

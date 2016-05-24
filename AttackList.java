@@ -1,31 +1,38 @@
-//Omni Consumer Programs
-//AttackList
+//OCP
+//AttackList to hold Hero/Villain attacks
 
-import java.util.ArrayList;
+import java.util.*;
 
-public class AttackList
+public class AttackList 
 {
-   private ArrayList<IAttack> _attackList;
-   
-   public AttackList()
-   {
-      ArrayList<IAttack> newAttackList = new ArrayList<IAttack>();
-      _attackList = newAttackList;
-   }//end AttackList
-   
-   public void add(IAttack attack)
-   {
-      _attackList.add(attack);
-   }//end add
-   
-   public int size()
-   {
-      return _attackList.size();
-   }//end size
-   
-   public IAttack getAttack(int i)
-   {
-      return _attackList.get(i);
-   }//end getAttack
-   
-}//end AttackList
+	private ArrayList<IAttack> attacks;
+	
+	public AttackList()
+	{
+		ArrayList<IAttack> attacks = new ArrayList<IAttack>();
+		this.attacks = attacks;
+	}
+	
+	public IAttack getAttack(int find)
+	{
+		return attacks.get(find);
+	}
+	
+	public void addAttack(IAttack addAttack)
+	{
+		this.attacks.add(addAttack);
+	}
+	
+	public void removeAttack(int removeAttack)
+	{
+		this.attacks.remove(removeAttack);
+	}
+	
+	public int size()
+	{
+		return this.attacks.size();
+	}
+	
+	
+	
+}

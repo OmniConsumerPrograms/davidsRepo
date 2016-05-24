@@ -1,35 +1,40 @@
-//Omni Consumer Programs 
+//OCP
 //Warrior
 
-public class Warrior extends Hero
-{
-   public Warrior(String name)
-   {
-   //String name, int maxHp, double baseHitAmount, 
-   //int defense, double hitPercent, double critPercent, int attackSpd
-      super( "Warrior", 500, 45, 55, 50, .50, .50, 15 );
+public class Warrior extends Hero {
 
-      IAttack attack = new NormalMeleeAttack();
-      
-      _attackList.add(attack);
-   }//end Warrior
-   
-   public void addLevelUpAttack1()
-   {
-      IAttack attack = new CrushingBlow();
-      
-      _attackList.add(attack);
-   }//end addCrushingBlow
-   
-   public void addLevelUpAttack2()
-   {
-      IAttack attack = new Whirlwind();
-      _attackList.add(attack);
-   }//end addLevelUpAttack3
-   
-   public void addLevelUpAttack3()
-   {
-      IAttack attack = new Execute();
-      _attackList.add(attack); 
-   }//end addLevelUpAttack3
-}//end Warrior class
+	public Warrior() 
+	{
+		super("Warrior", 120, 55, 65, 45, 20, 5, 80, 1);
+		
+		IAttack attack = new NormalMeleeAttack();
+		attackList.addAttack(attack);
+	}
+	
+	public Warrior(String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy, int level)
+	{
+		super(name, hpMax, attackMin, attackMax, speed, phyDefense, magDefense, accuracy, level);
+	}		
+
+	@Override
+	void level3Attack() 
+	{
+		IAttack attack = new CrushingBlow();
+		attackList.addAttack(attack);
+	}
+
+	@Override
+	void level6Attack() 
+	{
+		IAttack attack = new Execute();
+		attackList.addAttack(attack);
+	}
+
+	@Override
+	void level9Attack() 
+	{
+		IAttack attack = new Whirlwind();
+		attackList.addAttack(attack);
+	}
+
+}

@@ -1,15 +1,15 @@
 //OCP
-//Hunter Attack
+//Paladin Attack
 
 import java.util.Random;
 
-public class AutoShot implements IAttack 
+public class HammerOfJustice implements IAttack 
 {
 	private String attackName;
 	
-	public AutoShot()
+	public HammerOfJustice()
 	{
-		this.attackName = "Auto Shot";
+		this.attackName = "Hammer Of Justice";
 	}
 
 	@Override

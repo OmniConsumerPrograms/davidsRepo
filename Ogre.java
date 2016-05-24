@@ -1,30 +1,18 @@
-//Omni Consumer Programs
-//Villain - Ogre
+//OCP
+//Ogre villain
 
-import java.util.*;
+public class Ogre extends Villain {
+	//String name, int hpMax, int attackMin, int attackMax, int speed, 
+	//int phyDefense, int magDefense, int accuracy, int level	
+	public Ogre() 
+	{
+		super("OP the Ogre", 150, 30, 40, 50, 30, 3, 90, 1);
 
-public class Ogre extends Villain
-{
-   private String _villainName;
+		IAttack attack1 = new NormalMeleeAttack();
+		attackList.addAttack(attack1);
+		
+		IAttack attack2 = new CrushingBlow();
+		attackList.addAttack(attack2);		
+	}
 
-   public Ogre( String name )
-   {
-      //public Villian(String name, int maxHp, double hitMin, hitMax, int defense, 
-      //            double hitPercent, double critPercent, int attackSpd, int xp)
-      
-
-      super( name, 5000, 69, 70, 50, .85, .25, 40, 6 ); 
-   }//end EVC
-
-   public void setName( String name )
-   {
-      _villainName = name;
-   }
-   
-   public String getName()
-   {
-      return _villainName;
-   }
-
-
-}//end Ogre
+}

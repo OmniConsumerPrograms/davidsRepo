@@ -1,10 +1,15 @@
-//Omni Consumer Programs
-//Attack interface
-import java.util.*;
+//OCP
+//Attack Interface
 
-public interface IAttack
-{
-   abstract String getAttackName();
-   abstract void toAttack(Character hero, Character villain);
-   abstract boolean validAttack(Character hero, Random gen);
-}//end
+import java.util.Random;
+
+public interface IAttack {
+	
+	abstract String getAttackName();
+	
+	abstract void setAttackName(String attackName);
+
+	abstract void toAttack(Character hero, Character villain);
+	
+	abstract boolean validAttack(Character hero, Random gen);
+}

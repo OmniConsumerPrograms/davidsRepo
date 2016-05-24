@@ -1,26 +1,42 @@
-//Omni Consumer Programs
-//Villian class extends Character
+//OCP
+//Villain
 
-abstract class Villain extends Character
+public abstract class Villain extends Character 
 {
-   private int _xp;
-   
-   public Villain(String name, int maxHp, int hitMin, int hitMax, int defense, 
-                  double hitPercent, double critPercent, int attackSpd, int xp)
-   {
-      super(name, maxHp, hitMin, hitMax, defense, hitPercent, critPercent, attackSpd);
-      
-      _xp = xp;
-   }//end Villain EVC
+	private int xp;
+	protected Leveling level;
+	protected AttackList attackList;
+	
+	public Villain(String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy, int charLevel) 
+	{
+		super(name, hpMax, attackMin, attackMax, speed, phyDefense,	magDefense, accuracy);
+		
+		//this.xp = 0;
+		level = new Leveling();
+		level.setLevel( charLevel );		
+		
+		attackList = new AttackList();
+		IAttack attack = new NormalMeleeAttack();
+		attackList.addAttack(attack);		
+	}
 
-   public void setXp( int xp )
-   {
-      _xp = xp;
-   }//end setXp
-   
-   public int getXp()
-   {
-      return _xp;
-   }//end getXp
-   
-}//end Villain class
+	public int getXp() 
+	{
+		return xp;
+	}
+
+	public void setXp(int xp) 
+	{
+		this.xp = xp;
+	}
+	
+	public String charString()
+	{
+		String charString = "";
+		charString = getName() + ": Level " + this.level.getLevel() + ": " + getHp() + "hp";
+		return charString;		
+	}	
+	
+	
+
+}

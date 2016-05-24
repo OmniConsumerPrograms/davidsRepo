@@ -1,32 +1,38 @@
-//Omni Consumer Programs 
-//Priest
 
-public class Priest extends Hero
-{
-   public Priest(String name)
-   {
-   //String name, int maxHp, double baseHitAmount,
-   //double hitPercent, double critPercent, int attackSpd
-      super( "Priest", 500, 45, 55, 50, .75, .25, 15 );
-   }//end Priest
-   
-      public void addLevelUpAttack1()
-   {
-      IAttack attack = new Smite();
-      
-      _attackList.add(attack);
-   }//end addCrushingBlow
-   
-   public void addLevelUpAttack2()
-   {
-      IAttack attack = new MindSear();
-      _attackList.add(attack);
-   }//end addLevelUpAttack3
-   
-   public void addLevelUpAttack3()
-   {
-      IAttack attack = new Shadowfiend();
-      _attackList.add(attack); 
-   }//end addLevelUpAttack3
+public class Priest extends Hero {
 
-}//end Rogue Priest
+	public Priest() 
+	{
+		super("Priest", 100, 45, 55, 45, 5, 18,	85, 1);
+
+		IAttack attack = new NormalMeleeAttack();
+		this.attackList.addAttack(attack);
+	}
+	
+	public Priest(String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy, int level)
+	{
+		super(name, hpMax, attackMin, attackMax, speed, phyDefense, magDefense, accuracy, level);
+	}		
+
+	@Override
+	void level3Attack() 
+	{
+		IAttack attack = new Smite();
+		this.attackList.addAttack(attack);
+	}
+
+	@Override
+	void level6Attack() 
+	{
+		IAttack attack = new MindSear();
+		this.attackList.addAttack(attack);
+	}
+
+	@Override
+	void level9Attack() 
+	{
+		IAttack attack = new ShadowFiend();
+		this.attackList.addAttack(attack);
+	}
+
+}

@@ -1,47 +1,59 @@
-//Omni Consumer Programs
-//Smite - Priest Ability
+//OCP
+//Priest Attack
 
-import java.util.*;
+import java.util.Random;
 
-public class Smite implements IAttack
+public class Smite implements IAttack 
 {
-   private String _attackName;
-   
-   public Smite()
-   {
-      _attackName = "Smite";
-   }//end Smite
-   
-   public String getAttackName()
-   {
-      return _attackName;
-   }//end getAttackName
-   
-   public void toAttack(Character hero, Character villain)
-   {
-      Random randGen = new Random();
-      boolean yes = validAttack(hero, randGen);
-   
-      if( yes )
-      {
-         //int dmgAmt = randGen;
-         System.out.println( hero.getName() + " hit!" );   
-      }
-      else
-      {
-         System.out.println( hero.getName() + " missed!" );
-      }
+	private String attackName;
+	
+	public Smite()
+	{
+		this.attackName = "Smite";
+	}
 
-   }//end toAttack
-   
-   public boolean validAttack(Character hero, Random randGen)
-   {
-      double randHit = Math.abs(randGen.nextDouble()) % ( 100 ) + 1;
-   
-      if( randHit <= hero.getHitPercent() )
-         return true;
-      return false;        
-   }//end validAttack
+	@Override
+	public String getAttackName() 
+	{
+		return attackName;
+	}
+	
+	@Override
+	public void setAttackName(String attackName)
+	{
+		this.attackName = attackName;
+	}
+	
+	
+	@Override
+	public void toAttack(Character hero, Character villain)
+	{
+		int dmgAmt;
+	      Random randGen = new Random();
+	      boolean yes = validAttack(hero, randGen);
+	   
+	      if( yes )
+	      {
+	         dmgAmt = randGen.nextInt() % ((hero.getAttackMax() - hero.getAttackMin())+1);
+	         villain.setHp( villain.getHp() - dmgAmt );
+	         System.out.println( hero.getName() + "'s " + getAttackName() + " hit " 
+	                              + villain.getName() + " for " + dmgAmt + "hp." ); 
+	         System.out.println(villain.getName() + " has " + villain.getHp() + "hp.");
+	      }
+	      else
+	      {
+	         System.out.println( hero.getName() + " missed!" );
+	         System.out.println(villain.getName() + " has " + villain.getHp() + "hp." );
+	      }
+	}
 
-
-}//end Smite
+	@Override
+	public boolean validAttack(Character hero, Random gen)
+	{
+		double randHit = Math.abs(gen.nextDouble()) % ( 100 ) + 1;
+	   
+		if( randHit <= hero.getAccuracy() )
+			return true;
+	    return false;        
+	   }
+}
