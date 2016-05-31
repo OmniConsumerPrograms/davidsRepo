@@ -4,22 +4,17 @@
 abstract class Hero extends Character 
 {
 	private int xp;
-	protected Leveling level;
-	protected AttackList attackList;
+	private Leveling level;
 	//protected Inventory inventory;//got to get from brad
 	
-		      //String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy, int level
-	public Hero(String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy, int charLevel) 
+			  //String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy, int level
+	public Hero(String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy, int charLevel, int choiceNum) 
 	{
-		super(name, hpMax, attackMin, attackMax, speed, phyDefense, magDefense, accuracy);
+		super(name, hpMax, attackMin, attackMax, speed, phyDefense, magDefense, accuracy, charLevel, choiceNum);
 		
-		//this.xp = 0;
+		this.xp = 0;
 		level = new Leveling();
 		level.setLevel( charLevel );		
-		
-		attackList = new AttackList();
-		IAttack attack = new NormalMeleeAttack();
-		attackList.addAttack(attack);			
 	}
 	
 	abstract void level3Attack();
@@ -38,11 +33,11 @@ abstract class Hero extends Character
 	{
 		this.level.levelUp(hero);
 	}
-	
+
 	public String charString()
 	{
 		String charString = "";
-		charString = getName() + ": Level " + this.level.getLevel() + ": " + getHp() + "hp";
+		charString = getName() + ": Level " + this.level.getLevel() + ": " + getHp() + "hp: " + getXp() + "xp";
 		return charString;		
 	}	
 	

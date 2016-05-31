@@ -77,8 +77,7 @@ public class HeroGenerator
 	      
 		while( count < partySize )
 		{
-			int j = 1;
-			System.out.println("Please choose  a member for your party:");
+			System.out.println("Please choose a member for your party:");
 			printHero();
 			int choice = -1;
 			while (done == false && choice < 1 && choice > heroes.size());          
@@ -104,9 +103,9 @@ public class HeroGenerator
 			if (choice == 1) 
 				heroes.addChar(new Hunter());
 			else if (choice == 2) 
-				heroes.addChar(new Priest());
-			else if (choice == 3) 
 	        	 heroes.addChar(new Rogue());
+			else if (choice == 3) 
+				heroes.addChar(new Priest());
 			else if (choice == 4) 
 	        	 heroes.addChar(new Warrior());   
 			else if (choice == 5) 

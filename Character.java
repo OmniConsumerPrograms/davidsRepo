@@ -12,9 +12,12 @@ abstract class Character
 	private int phyDefense;
 	private int magDefense;
 	private int accuracy;
+	private int level;
+	private int choiceNum;
 	protected AttackList attackList;
+	protected AttackList healList;
 	
-	public Character(String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy)
+	public Character(String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy, int charLevel, int choiceNum)
 	{
 		this.setName(name);
 		this.setHpMax(hpMax);
@@ -25,7 +28,9 @@ abstract class Character
 		this.setPhyDefense(phyDefense);
 		this.setMagDefense(magDefense);
 		this.setAccuracy(accuracy);
-				
+		this.setChoiceNum(choiceNum);
+		attackList = new AttackList();
+		healList = new AttackList();
 	}
 
 	public String getName() {
@@ -100,16 +105,58 @@ abstract class Character
 		this.accuracy = accuracy;
 	}
 	
+	public int getLevel() {
+		return level;
+	}
+
+	public void setLevel(int level) {
+		this.level = level;
+	}
+	
+	public int getChoiceNum() {
+		return choiceNum;
+	}
+
+	public void setChoiceNum(int choiceNum) {
+		this.choiceNum = choiceNum;
+	}
+	
 	public boolean isAlive()
 	{
 		if( this.hp > 0)
 			return true;
 		return false;
 	}
-	
+	/*
+	public Leveling getLevel()
+	{
+		return this.getLevel();
+	}
+	*/
 	public String charString()
 	{
 		return this.name + ": " + this.getHp();
+	}
+	
+	public void statsString()
+	{
+		System.out.println( this.name + ": " + this.hp + "HP, " + this.accuracy + " ACCURACY, " + this.speed + " SPEED, " 
+		  + this.magDefense + " MAGICAL DEFENSE, " + this.phyDefense + " PHYSICAL DEFENSE");
+
+	}
+	
+	public void attackString()
+	{
+		int i;
+		for(i = 0; i < attackList.size(); i++)
+			System.out.println((i+1) + ". " + attackList.getAttack(i).getAttackName());
+	}
+	
+	public void healString()
+	{
+		int i;
+		for(i = 0; i < healList.size(); i++)
+			System.out.println((i+1) + ". " + healList.getAttack(i).getAttackName());
 	}
 	
 	public final void attack(Character incomingCharacter, int choiceInput) 

@@ -5,19 +5,14 @@ public abstract class Villain extends Character
 {
 	private int xp;
 	protected Leveling level;
-	protected AttackList attackList;
 	
-	public Villain(String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy, int charLevel) 
+	public Villain(String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy, int charLevel, int xp) 
 	{
-		super(name, hpMax, attackMin, attackMax, speed, phyDefense,	magDefense, accuracy);
+		super(name, hpMax, attackMin, attackMax, speed, phyDefense,	magDefense, accuracy, charLevel, xp);
 		
-		//this.xp = 0;
+		this.xp = xp;
 		level = new Leveling();
-		level.setLevel( charLevel );		
-		
-		attackList = new AttackList();
-		IAttack attack = new NormalMeleeAttack();
-		attackList.addAttack(attack);		
+		level.setLevel( charLevel );			
 	}
 
 	public int getXp() 

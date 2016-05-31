@@ -29,12 +29,16 @@ public class Gourge implements IAttack
 	public void toAttack(Character hero, Character villain) 
 	{
 		int dmgAmt;
+		double modDmg;
 		Random randGen = new Random();
 		boolean yes = validAttack(hero, randGen);
-	   
+		
 		if( yes )
 		{
-			dmgAmt = randGen.nextInt() % ((hero.getAttackMax() - hero.getAttackMin())+1);
+			dmgAmt = Math.abs((randGen.nextInt() % (hero.getAttackMax()) + 1 ) + hero.getAttackMin());
+			modDmg = dmgAmt;
+			modDmg = modDmg * 1.875;
+			dmgAmt = (int)modDmg;
 			villain.setHp( villain.getHp() - dmgAmt );
 			System.out.println( hero.getName() + "'s " + getAttackName() + " hit " 
 					+ villain.getName() + " for " + dmgAmt + "hp." ); 

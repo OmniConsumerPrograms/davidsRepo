@@ -1,74 +1,66 @@
 public abstract class BattleTurn 
 {
-  final boolean executeTurn(Party heroes, Party villains) 
-  {
-      int attackersPos = heroes.getTurn();
-      int defendersPos = villains.getTurn();
+	abstract int chooseAttack(Character hero);
+	abstract int chooseHeal(Character hero);
+	abstract int chooseEnemy(Party villains);
+	abstract void checkDefenderLife(Character currentAttacker, Party defenders, Character currentDefender, int defendersPos);
+	
+	final boolean executeTurn(Party attackers, Party defenders) 
+	{
+		int attackersPos = attackers.getTurn();
+		int defendersPos = defenders.getTurn();
       
-      Character currentAttacker = heroes.getChar(attackersPos);
+		Character currentAttacker = attackers.getChar(attackersPos);
       
-      int menuChoice = optionsMenu(currentAttacker);
-
-      while (menuChoice == 3) {
-         System.out.println("Current good guys: ");
-         heroes.partyString();
+		int menuChoice = menu(currentAttacker);
+            
+		if (menuChoice == 1) 
+		{
+			int choice = chooseAttack(currentAttacker);
+			int currentDefendersPos = chooseEnemy(defenders);
+			Character currentDefender = defenders.getChar(currentDefendersPos);
+			executeAttack(currentAttacker, currentDefender, choice);
+			checkDefenderLife(currentAttacker, defenders, currentDefender, currentDefendersPos);  
+		}
+		
+		if(menuChoice == 2)
+		{
+			int choice = chooseHeal(currentAttacker);
+		}
+		
+		while (menuChoice == 4) 
+		{
+			System.out.println("Your Heroes: ");
+			attackers.partyString();
          
-         System.out.println("Current bad guys: ");
-         villains.partyString();
+			System.out.println("The Villains: ");
+			defenders.partyString();
          
-         menuChoice = optionsMenu(currentAttacker);
-      }  
-       
-      if (menuChoice == 4) 
-         return true;   
-      
-      if (menuChoice == 1) 
-      {
-         int choice = chooseAttack(currentAttacker);
-         
-         int currentDefendersPos = chooseOpponent(villains);
-         
-         Character currentDefender = villains.getChar(currentDefendersPos);
-         
-         executeAttack(currentAttacker, currentDefender, choice);
-         checkDefenderLife(currentAttacker, villains, currentDefender, currentDefendersPos);
+			menuChoice = menu(currentAttacker);
+		}    
           
-      }    
-      
-      advanceTurnOrder(heroes, villains);
-      
-      return false;
-   }
+		advanceTurnOrder(attackers, defenders);
+      	return false;
+	}
    
-   public int optionsMenu(Character currentAttacker) {
-      int x = 1;
-      
-      System.out.println(currentAttacker.getName() + " is attacking!");
-      
-      return x;
-   }   
+	public int menu(Character currentAttacker) 
+	{
+		int i = 1;
+		System.out.println(currentAttacker.getName() + " is attacking!");  
+		return i;
+	}   
    
-   public void useItem(Hero user) 
-   {
-      return;
-   }
-   
-   abstract int chooseAttack(Character currentAttacker);
-   abstract int chooseOpponent(Party defenders);
-   
-   public void executeAttack(Character currentAttacker, Character currentDefender, int choice) 
-   {
-      currentAttacker.attack(currentAttacker, choice);
-   }
-   
-   abstract void checkDefenderLife(Character currentAttacker, Party defenders, Character currentDefender, int defendersPos); 
-   
-   public void advanceTurnOrder(Party attackers, Party defenders) 
-   {
-      attackers.turnPlusPlus();
-      if (attackers.getTurn() >= attackers.size())
-         attackers.setTurn(0);
-      if (defenders.getTurn() >= defenders.size())
-         defenders.setTurn(0);
-   }
+	public void executeAttack(Character currentAttacker, Character currentDefender, int choice) 
+	{
+		currentAttacker.attack(currentDefender, choice);
+	}
+
+	public void advanceTurnOrder(Party attackers, Party defenders) 
+	{
+		attackers.turnPlusPlus();
+		if (attackers.getTurn() >= attackers.size()) 
+			attackers.setTurn(0);      
+		if (defenders.getTurn() >= defenders.size()) 
+			defenders.setTurn(0);
+	}
 }

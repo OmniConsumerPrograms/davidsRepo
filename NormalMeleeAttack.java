@@ -33,7 +33,7 @@ public class NormalMeleeAttack implements IAttack
 	   
 		if( yes )
 		{
-			dmgAmt = randGen.nextInt() % ((hero.getAttackMax() - hero.getAttackMin())+1);
+			dmgAmt = Math.abs((randGen.nextInt() % (hero.getAttackMax()) + 1 ) + hero.getAttackMin());
 			villain.setHp( villain.getHp() - dmgAmt );
 			System.out.println( hero.getName() + "'s " + getAttackName() + " hit " 
 					+ villain.getName() + " for " + dmgAmt + "hp." ); 

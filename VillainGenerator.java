@@ -29,7 +29,7 @@ public class VillainGenerator
 		
 		for(i = 0; i < numVillains; i++)
 		{	
-			tempVillain = gen.nextInt(10) + 1;
+			tempVillain = gen.nextInt(100) + 1;
 			Villain vil = pickVillain( tempVillain );
 			
 			villainsParty.addChar(vil);
@@ -41,10 +41,22 @@ public class VillainGenerator
 	{
 		Villain villain = null;
 		
-		if(typeVillain < 5)
+		if(typeVillain <= 25)
 			villain = new Yeti();
-		else if(typeVillain < 10)
+		else if(typeVillain > 25 && typeVillain <= 45)
 			villain = new Ogre();
+		else if(typeVillain > 45 && typeVillain <= 60)
+			villain = new Banshee();
+		else if( typeVillain > 60 && typeVillain <= 70)
+			villain = new Warlock();
+		else if(typeVillain > 70 && typeVillain <= 80)
+			villain = new Barbarian();
+		else if(typeVillain > 80 && typeVillain <= 85)
+			villain = new Demon();
+		else if( typeVillain > 85 && typeVillain <= 90)
+			villain = new Giant();
+		else
+			villain = new Dragon();
 		
 		return villain;
 	}

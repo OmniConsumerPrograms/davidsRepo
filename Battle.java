@@ -1,86 +1,83 @@
-//OCP
-//Battle
-
 import java.util.*;
 
-public class Battle 
+public class Battle
 {
 	protected Party heroes;
 	protected Party villains;
-	protected VillainGenerator VG;
-	protected Random gen = new Random();
-	
+	protected VillainGenerator VG = new VillainGenerator();
+	protected Random randomGenerator = new Random();
+      
 	public Battle(Party heroes)
 	{
 		this.heroes = heroes;
 		this.villains = VG.generateVillains(heroes.size());
-		villains.partyString();
 	}
-
-	public boolean theBattle()
+   
+	public boolean doBattle()
 	{
+		System.out.println("You have encountered ");
 		boolean fled = false;
-		System.out.println("You have encountered an group of Enemies!");
-	
-		while( partiesAlive() && fled == false )
+      
+		while (checkPartiesAlive() && fled == false) 
 		{
-	         int currGoodPos = heroes.getTurn();
-	         int currBadPos = villains.getTurn();
-	         
-	         Character currentGoodGuy = heroes.getChar(currGoodPos);
-	         Character currentBadGuy = villains.getChar(currBadPos);
-	         
-	         HeroTurn turnGoodGuy = new HeroTurn();
-	         VillainTurn turnBadGuy = new VillainTurn();
-	         
-	         if (currentGoodGuy.getSpeed() >= currentBadGuy.getSpeed()) 
-	         {
-	            fled = turnGoodGuy.executeTurn(heroes, villains); 
-	            
-	            if (partiesAlive() && fled == false ) 
-	            {                
-	               turnBadGuy.executeTurn(heroes, villains);
-	            }
-	            else {
-	               break;
-	            }                    
-	         }    
-	         else 
-	         {                    
-	            turnBadGuy.executeTurn(heroes, villains);
-	            if (partiesAlive()) 
-	            {                   
-	               fled = turnGoodGuy.executeTurn(heroes, villains);
-	            }
-	            else {
-	               break;
-	            } 
-	            
-	         }
-	      }
-	      battleString();           
-	      return fled;
+			int currGoodPos = heroes.getTurn();
+			int currBadPos = villains.getTurn();
+         
+			Character currentHero = heroes.getChar(currGoodPos);
+			Character currentVillain = villains.getChar(currBadPos);
+         
+			HeroTurn turnHero = new HeroTurn();
+			VillainTurn turnVillain = new VillainTurn();
+         
+			if (currentHero.getSpeed() >= currentVillain.getSpeed()) 
+			{
+				fled = turnHero.executeTurn(heroes, villains); 
+            
+				if (checkPartiesAlive() && fled == false ) 
+				{                
+					turnVillain.executeTurn(villains, heroes);
+				}
+				else 
+				{
+					break;
+				}   
+                              
+			}     
+			else 
+			{                    
+				turnVillain.executeTurn(villains, heroes);
+
+				if (checkPartiesAlive()) 
+				{                   
+					fled = turnHero.executeTurn(heroes, villains);
+				}
+           
+				else 
+				{
+					break;
+				} 
+            
+			}
+		}      
+		printResult();
+        return fled;
+        
 	}
-		
-	public void battleString()
+	
+	public boolean checkPartiesAlive() 
 	{
-		if(heroes.size() == 0)
-		{
-			System.out.println("Your party has defeated the enemy!");
-			System.out.println();
-		}
-		else if(villains.size() == 0)
-		{
-			System.out.println("Your party has been defeated :'(" );
-			System.out.println();
-		}
+		return heroes.size() > 0 && villains.size() > 0;  
 	}
-	
-	public boolean partiesAlive()
+   
+	public void printResult() 
 	{
-		if( heroes.size() > 0 && villains.size() > 0)
-			return true;
-		return false;
+		if(villains.size() <= 0)
+		{
+			System.out.println("Your party has survived! Good work!\n");
+		}
+		if (heroes.size() <= 0) 
+		{ 
+			System.out.println("Your party has been defeated! It is a sad day\n"); 
+		}   	
 	}
-	
 }

@@ -7,14 +7,12 @@ public class Party
 {
 	private int turn;
 	private boolean active; 
-	protected Random gen;
 	private ArrayList<Character> party;
 	
 	public Party() 
 	{
 		this.setTurn(0);
 		this.setActive(true);
-		this.gen = new Random();
 		this.setParty(new ArrayList<Character>());
 	}
 
@@ -75,8 +73,7 @@ public class Party
 		for( i = 0; i < size(); i++)
 		{
 			cur = getChar(i);
-			System.out.println((i+1) +  ", " + cur.charString() );
+			System.out.println((i+1) +  ". " + cur.charString() );
 		}
 	}
-
 }

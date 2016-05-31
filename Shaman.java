@@ -1,21 +1,23 @@
 //OCP
 //Shaman
 
-public class Shaman extends Hero {
-
+public class Shaman extends Hero 
+{
+	private int choiceNum;
+	
 	public Shaman() 
 	{
-		//		super("Warrior", 120, 55, 65, 45, 20, 5, 80, 1);
+		super("Shaman", 115, 55, 60, 40, 15, 10, 80, 1, 8);
 
-		super("Shaman", 115, 55, 60, 40, 15, 10, 80, 1);
-
+		this.choiceNum = 8;
+		
 		IAttack attack = new NormalMeleeAttack();
 		this.attackList.addAttack(attack);
 	}
 	
-	public Shaman(String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy, int level)
+	public Shaman(String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy, int level, int choiceNum)
 	{
-		super(name, hpMax, attackMin, attackMax, speed, phyDefense, magDefense, accuracy, level);
+		super(name, hpMax, attackMin, attackMax, speed, phyDefense, magDefense, accuracy, level, choiceNum);
 	}		
 
 	@Override
@@ -37,6 +39,14 @@ public class Shaman extends Hero {
 	{
 		IAttack attack = new Windfury();
 		this.attackList.addAttack(attack);
+	}
+
+	public int getChoiceNum() {
+		return choiceNum;
+	}
+
+	public void setChoiceNum(int choiceNum) {
+		this.choiceNum = choiceNum;
 	}
 
 }
