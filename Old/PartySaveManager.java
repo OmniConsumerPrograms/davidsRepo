@@ -22,9 +22,18 @@ public class PartySaveManager extends SaveLoadManager
 		
 		for( i = 0; i < heroes.size(); i++)
 		{
+			fout.println( heroes.getChar(i).getChoiceNum());
 
-			
-			//all of the gets go here
+			fout.println( heroes.getChar(i).getName());
+			fout.println( heroes.getChar(i).getHpMax());
+			fout.println( heroes.getChar(i).getAttackMin());
+			fout.println( heroes.getChar(i).getAttackMax());
+			fout.println( heroes.getChar(i).getSpeed());
+			fout.println( heroes.getChar(i).getPhyDefense());
+			fout.println( heroes.getChar(i).getMagDefense());
+			fout.println( heroes.getChar(i).getAccuracy());
+			fout.println( heroes.getChar(i).getLevel());
+			fout.println( heroes.getChar(i).getChoiceNum());
 		}
 		fout.close();
 	}

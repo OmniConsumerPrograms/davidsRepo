@@ -1,3 +1,4 @@
+
 //OCP
 //Leveling 
 
@@ -48,7 +49,6 @@ public class Leveling
 	            levelUp8(hero);
 	        else if(checkLevel == 12)
 	            levelUp12(hero);
-
 		}
 		
 		this.level = checkLevel;
@@ -94,21 +94,22 @@ public class Leveling
 	
 	private void levelUp4(Hero hero)
 	{
-		hero.level4Attack();		
+		hero.level3Attack();		
 		System.out.println(hero.getName() + " gets a new attack!");
-		System.out.println(hero.attackList.getAttack(1).getAttackName());	
+		System.out.println(hero.attackList.getAttack(1).getAttackName());
+		
 	}
 	
 	private void levelUp8(Hero hero)
 	{
-		hero.level8Attack();
+		hero.level6Attack();
 		System.out.println(hero.getName() + " gets a new attack!");
 		System.out.println(hero.attackList.getAttack(2).getAttackName());		
 	}
 	
 	private void levelUp12(Hero hero)
 	{
-		hero.level12Attack();		
+		hero.level9Attack();		
 		System.out.println(hero.getName() + " gets a new attack!");
 		System.out.println(hero.attackList.getAttack(3).getAttackName());
 	}
