@@ -78,5 +78,8 @@ public class GreaterBandage implements IHeal
 	
 		System.out.println("Your " + getHealName() + " healed your " + healThisGuy.getName() + " for " + healAmt + "hp");
 		System.out.println(healThisGuy.getName() + " now has " + healThisGuy.getHP() + "hp");
+	
+		hero.setSP(hero.getSP()- this.getSkillCost());
+
 	}
 }

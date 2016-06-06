@@ -20,6 +20,6 @@ public interface IAttack
 	public int getSkillCost();
 
 	public void toAttack(ICharacter hero, ICharacter villain);
-	
+		
 	public boolean validAttack(ICharacter hero, Random gen);
 }

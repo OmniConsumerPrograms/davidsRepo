@@ -22,7 +22,7 @@ public class Battle implements IBattle
 		this.villains = VG.generateVillains(heroes.size());
 	}
 //			int					int type
-	public boolean runBattle()
+	public int runBattle(int type)
 	{
 		System.out.println("You have encountered ");
 		this.villains.partyString();
@@ -50,7 +50,7 @@ public class Battle implements IBattle
 				}
 				else 
 				{
-					break;
+					return 540;
 				}   
                               
 			}     
@@ -65,14 +65,14 @@ public class Battle implements IBattle
            
 				else 
 				{
-					break;
+					return 550;
 				} 
             
 			}
 		}      
 		printResult();
         //return 1;
-		return done;
+		return 540;
 		
         
 	}
@@ -87,6 +87,11 @@ public class Battle implements IBattle
 		if(villains.size() <= 0)
 		{
 			System.out.println("Your party has survived! Good work!\n");
+			int i;
+			for(i = 0; i < heroes.size(); i++)
+			{
+				heroes.getChar(i).setSP(heroes.getChar(i).getSPMax());
+			}
 		}
 		if (heroes.size() <= 0) 
 		{ 

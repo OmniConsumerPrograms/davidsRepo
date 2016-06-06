@@ -77,21 +77,45 @@ public class VillainGenerator
 		IVillain villain = null;
 		
 		if(typeVillain <= 25)
+		{
+			skillList.add(new CrushingBlow());
 			villain = new Yeti(skillList);
+		}
 		else if(typeVillain > 25 && typeVillain <= 45)
+		{
+			skillList.add(new SinisterStrike());
 			villain = new Ogre(skillList);
+		}
 		else if(typeVillain > 45 && typeVillain <= 60)
+		{
+			skillList.add(new Smite());
 			villain = new Banshee(skillList);
+		}
 		else if(typeVillain > 60 && typeVillain <= 70)
+		{
+			skillList.add(new Fireball());
 			villain = new Warlock(skillList);
+		}
 		else if(typeVillain > 70 && typeVillain <= 80)
+		{
+			skillList.add(new CrushingBlow());
 			villain = new Barbarian(skillList);
+		}
 		else if(typeVillain > 80 && typeVillain <= 85)
+		{
+			skillList.add(new Fireball());
 			villain = new Demon(skillList);
+		}
 		else if(typeVillain > 85 && typeVillain <= 90)
+		{
+			skillList.add(new CrushingBlow());
 			villain = new Giant(skillList);
+		}
 		else
+		{
+			skillList.add(new Fireball());
 			villain = new Dragon(skillList);
+		}
 		
 		return villain;
 	}

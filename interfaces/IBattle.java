@@ -6,5 +6,5 @@ package interfaces;
 public interface IBattle
 {
 	//public int runBattle(int type);
-	public boolean runBattle();
+	public int runBattle(int type);
 }

@@ -119,6 +119,7 @@ public class HeroGenerator
 	            	System.out.println("***Invalid entry, please try again***");
 	            }
 			}
+			
 			if (choice == 1) 
 				heroes.addChar(new Hunter(skillList));
 			else if (choice == 2) 

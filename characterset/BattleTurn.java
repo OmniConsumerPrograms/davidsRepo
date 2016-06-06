@@ -13,12 +13,13 @@ public abstract class BattleTurn
 	
 	final boolean executeTurn(IParty attackers, IParty defenders) 
 	{
+		int menuChoice = -1;
 		int attackersPos = attackers.getTurn();
 		int defendersPos = defenders.getTurn();
       
 		ICharacter currentAttacker = attackers.getChar(attackersPos);
       
-		int menuChoice = menu(currentAttacker);
+		menuChoice = menu(currentAttacker);
             
 		if (menuChoice == 1) 
 		{
@@ -31,13 +32,25 @@ public abstract class BattleTurn
 		
 		if(menuChoice == 2)
 		{
-			int choice = chooseHeal(currentAttacker);
-			int curAttackersPos = chooseAlly(attackers);
-			ICharacter currentDefender = attackers.getChar(curAttackersPos);
-			executeHeal( currentAttacker, currentDefender, choice);
 			
+			int i;
+			for(i = 0; i < 2; i++)
+			{
+				int choice = chooseHeal(currentAttacker);
+				System.out.println(choice);
+				int curAttackersPos = chooseAlly(attackers);
+				System.out.println(curAttackersPos);
+				ICharacter currentDefender = attackers.getChar(curAttackersPos);
+				executeHeal( currentAttacker, currentDefender, choice);
+			}
 		}
 		
+		if( menuChoice == 3)
+		{
+			System.out.println("This is where the inventory should be");
+			System.out.println("BattleTurn.java");
+			menuChoice = menu(currentAttacker);
+		}
 		
 		while (menuChoice == 4) 
 		{
@@ -53,16 +66,7 @@ public abstract class BattleTurn
 		advanceTurnOrder(attackers, defenders);
       	return false;
 	}
-/*   
-	private int chooseAlly(IParty attackers) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	private void executeHeal(ICharacter currentAttacker	ICharacter currentDefender, int choice) {
-		// TODO Auto-generated method stub
-		
-	}
-*/
+
 	public int menu(ICharacter currentAttacker) 
 	{
 		int i = 1;

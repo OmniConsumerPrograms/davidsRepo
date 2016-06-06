@@ -1,17 +1,24 @@
+import interfaces.IEquipment;
+import interfaces.IHeal;
+import interfaces.IParty;
+
 import java.util.*;
 import java.io.*;
 
+import weaponset.BareHands;
+import characterset.Heal;
+
 public class PartySaveManager extends SaveLoadManager
 {
-	private Party heroes; 	
+	private IParty heroes; 	
 	
-	public PartySaveManager(Party heroes) 
+	public PartySaveManager(IParty heroes) 
 	{
 		this.setHeroes(heroes);
 	}
 	
 	//String name, int hpMax, int attackMin, int attackMax, int speed, int phyDefense, int magDefense, int accuracy, int level
-	public void printParty( Party heroes )
+	public void printParty( IParty heroes )
 	{
 		int i;
 		PrintWriter fout;
@@ -22,14 +29,47 @@ public class PartySaveManager extends SaveLoadManager
 		
 		for( i = 0; i < heroes.size(); i++)
 		{
-
+			fout.println(heroes.getChar(i).getName());
+			fout.println(heroes.getChar(i).getStatus());
+			fout.println(heroes.getChar(i).getHPMax());
+			fout.println(heroes.getChar(i).getHP());
+			fout.println(heroes.getChar(i).getAttackMin());
+			fout.println(heroes.getChar(i).getAttackMax());
+			fout.println(heroes.getChar(i).getHealMin());
+			fout.println(heroes.getChar(i).getHealMax());
+			fout.println(heroes.getChar(i).getSpeed());
+			fout.println(heroes.getChar(i).getAccuracy());
+			fout.println(heroes.getChar(i).getPhyDefense());
+			fout.println(heroes.getChar(i).getMagDefense());
+			//fout.println(heroes.getChar(i).getXP());
+			//fout.println(heroes.getChar(i).)
 			
-			//all of the gets go here
+			/*
+
+		accuracy = 60.0;
+		phyDefense = 13;
+		magDefense = 13;
+		exp = 0;
+		level = 1;
+		levelCap = 12;
+		levelTrack = new int[levelCap];
+		skillList = skills;
+		
+		healList = new ArrayList<IHeal>();
+		healList.add(new Heal());
+		
+		equipmentSet = new IEquipment[3];
+		weapon = new BareHands(1);
+		
+		setupEquipmentSet();
+		buildLevelTrack();
+			 */
+			
 		}
 		fout.close();
 	}
 	
-	public PrintWriter openFout( Party heroes )
+	public PrintWriter openFout( IParty heroes )
 	{
 		PrintWriter fout = null;
 		boolean done = false;
@@ -57,11 +97,11 @@ public class PartySaveManager extends SaveLoadManager
 		return fout;
 	}
 
-	public Party getHeroes() {
+	public IParty getHeroes() {
 		return heroes;
 	}
 
-	public void setHeroes(Party heroes) {
+	public void setHeroes(IParty heroes) {
 		this.heroes = heroes;
 	}
 	

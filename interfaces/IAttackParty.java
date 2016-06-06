@@ -19,8 +19,6 @@ public interface IAttackParty
 	public int getEventID();
 	
 	public int getSkillCost();
-
-	public void toAttack(ICharacter hero, IParty villains);
 	
 	public boolean validAttack(ICharacter hero, Random gen);
 }

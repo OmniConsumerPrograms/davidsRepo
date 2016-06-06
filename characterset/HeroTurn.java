@@ -20,7 +20,7 @@ public class HeroTurn extends BattleTurn
    		
    		System.out.println("Choose an attack: ");
    		hero.attackListString();      
-      
+   		
    		do 
    		{
    			try 
@@ -97,7 +97,6 @@ public class HeroTurn extends BattleTurn
       {
          System.out.println("Who would you like to heal?");
          allies.partyString();
-         System.out.println("did the party print?");
                
          try 
          {
