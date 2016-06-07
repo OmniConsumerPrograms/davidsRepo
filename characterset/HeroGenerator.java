@@ -5,6 +5,7 @@ package characterset;
 
 import interfaces.IAttack;
 import interfaces.IHero;
+import interfaces.IHeroGenerator;
 import interfaces.IParty;
 
 import java.util.ArrayList;
@@ -20,7 +21,8 @@ import characterset.Rogue;
 import characterset.Shaman;
 import characterset.Warrior;
 
-public class HeroGenerator 
+@SuppressWarnings("resource")
+public class HeroGenerator implements IHeroGenerator
 {
 	private ArrayList<IHero> heroes;
 	
@@ -30,28 +32,31 @@ public class HeroGenerator
 	      
 		IHero tempChar;
 	      
-		tempChar = new Hunter(null);
+		tempChar = new Hunter(new ArrayList<IAttack>());
 			heroes.add(tempChar);
 	      
-		tempChar = new Rogue(null);
+		tempChar = new Rogue(new ArrayList<IAttack>());
 			heroes.add(tempChar);
 	      	
-		tempChar = new Priest(null);
+		tempChar = new Priest(new ArrayList<IAttack>());
 			heroes.add(tempChar);
 	      
-		tempChar = new Warrior(null);
+		tempChar = new Warrior(new ArrayList<IAttack>());
 			heroes.add(tempChar);	      
 		
-		tempChar = new Druid(null);
+		tempChar = new Druid(new ArrayList<IAttack>());
 			heroes.add(tempChar);
 		
-		tempChar = new Paladin(null);
+		tempChar = new Paladin(new ArrayList<IAttack>());
 			heroes.add(tempChar);
 	      
-		tempChar = new Mage(null);
+		tempChar = new Mage(new ArrayList<IAttack>());
 			heroes.add(tempChar);
 		
-		tempChar = new Shaman(null);
+		tempChar = new Shaman(new ArrayList<IAttack>());
+			heroes.add(tempChar);
+			
+		tempChar = new MuscleWizard(new ArrayList<IAttack>());
 			heroes.add(tempChar);
 	}     
 	
@@ -71,8 +76,6 @@ public class HeroGenerator
 		boolean done = false;
 		Scanner user = new Scanner(System.in);
 		IParty heroes = new Party();
-		ArrayList<IAttack> skillList = new ArrayList<IAttack>();
-		skillList.add(new Melee());
 	      
 		while( done == false )
 		{  
@@ -105,7 +108,7 @@ public class HeroGenerator
 	            {
 					choice = user.nextInt();
 	              
-					if( choice >= 1 && choice <= 8 )
+					if( choice >= 1 && choice <= 9 )
 					{
 						done = true;
 						count++;
@@ -121,24 +124,60 @@ public class HeroGenerator
 			}
 			
 			if (choice == 1) 
+			{
+				ArrayList<IAttack> skillList = new ArrayList<IAttack>();
+				skillList.add(new Melee());
 				heroes.addChar(new Hunter(skillList));
-			else if (choice == 2) 
+			}
+			else if (choice == 2)
+			{
+				ArrayList<IAttack> skillList = new ArrayList<IAttack>();
+				skillList.add(new Melee());
 	        	 heroes.addChar(new Rogue(skillList));
+			}
 			else if (choice == 3) 
+			{
+				ArrayList<IAttack> skillList = new ArrayList<IAttack>();
+				skillList.add(new Melee());
 				heroes.addChar(new Priest(skillList));
+			}
 			else if (choice == 4) 
-	        	 heroes.addChar(new Warrior(skillList));   
+			{
+				ArrayList<IAttack> skillList = new ArrayList<IAttack>();
+				skillList.add(new Melee());
+				heroes.addChar(new Warrior(skillList));   
+			}
 			else if (choice == 5) 
-	        	 heroes.addChar(new Druid(skillList));
+			{
+				ArrayList<IAttack> skillList = new ArrayList<IAttack>();
+				skillList.add(new Melee());
+				heroes.addChar(new Druid(skillList));
+			}
 			else if (choice == 6) 
-	        	 heroes.addChar(new Paladin(skillList));
+			{
+				ArrayList<IAttack> skillList = new ArrayList<IAttack>();
+				skillList.add(new Melee());
+				heroes.addChar(new Paladin(skillList));
+			}
 			else if (choice == 7) 
-	        	 heroes.addChar(new Mage(skillList)); 
+			{
+				ArrayList<IAttack> skillList = new ArrayList<IAttack>();
+				skillList.add(new Melee());
+				heroes.addChar(new Mage(skillList)); 
+			}
 			else if (choice == 8) 
-	        	 heroes.addChar(new Shaman(skillList)); 
+			{	
+				ArrayList<IAttack> skillList = new ArrayList<IAttack>();
+				skillList.add(new Melee());
+				heroes.addChar(new Shaman(skillList)); 
+			}
+			else if (choice == 9)
+			{
+				ArrayList<IAttack> skillList = new ArrayList<IAttack>();
+				skillList.add(new Melee());
+				heroes.addChar(new MuscleWizard(skillList));
+			}
 		}      
 	      return (IParty) heroes; 
-	   }
-
-
+	}
 }
