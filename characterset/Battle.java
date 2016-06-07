@@ -3,33 +3,45 @@ package characterset;
 import interfaces.IBattle;
 import interfaces.ICharacter;
 import interfaces.IParty;
+import systemset.Gamemaster;
 
 import java.util.*;
 
 import characterset.Party;
 import characterset.VillainGenerator;
 
+@SuppressWarnings("unused")
 public class Battle implements IBattle
 {
 	protected IParty heroes;
 	protected IParty villains;
 	protected VillainGenerator VG = new VillainGenerator();
 	protected Random randomGenerator = new Random();
+	protected Gamemaster GM;
       
-	public Battle(IParty heroes)
+	public Battle(IParty heroes, Gamemaster GM)
 	{
 		this.heroes = heroes;
 		this.villains = VG.generateVillains(heroes.size());
+		this.GM = GM;
 	}
+	
+	public Battle(IParty heroes, IParty bossParty, Gamemaster GM)
+	{
+		this.heroes = heroes;
+      this.villains = bossParty
+		this.GM = GM;
+	}
+	
 //			int					int type
-	public int runBattle(int type)
+	public int runBattle()
 	{
 		System.out.println("You have encountered ");
 		this.villains.partyString();
 		
 		boolean done = false;
       
-		while (checkPartiesAlive() && done == false) 
+		while (checkPartiesAlive() && done == false && GM.getGameMode() == 910) 
 		{
 			int currGoodPos = heroes.getTurn();
 			int currBadPos = villains.getTurn();
@@ -37,10 +49,10 @@ public class Battle implements IBattle
 			ICharacter currentHero = heroes.getChar(currGoodPos);
 			ICharacter currentVillain = villains.getChar(currBadPos);
          
-			HeroTurn turnHero = new HeroTurn();
-			VillainTurn turnVillain = new VillainTurn();
+			HeroTurn turnHero = new HeroTurn(GM);
+			VillainTurn turnVillain = new VillainTurn(GM);
          
-			if (currentHero.getSpeed() >= currentVillain.getSpeed()) 
+			if (currentHero.getSpeed() >= currentVillain.getSpeed() && GM.getGameMode() == 910) 
 			{
 				done = turnHero.executeTurn(heroes, villains); 
             
@@ -54,7 +66,7 @@ public class Battle implements IBattle
 				}   
                               
 			}     
-			else 
+			else if(GM.getGameMode() == 910)
 			{                    
 				turnVillain.executeTurn(villains, heroes);
 
@@ -70,9 +82,9 @@ public class Battle implements IBattle
             
 			}
 		}      
-		printResult();
+		//printResult();
         //return 1;
-		return 540;
+		return 909;
 		
         
 	}
